@@ -4,38 +4,25 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import dev.kpucha.itx.model.Price;
+import dev.kpucha.itx.model.PriceId;
 
-@Repository
-public interface PriceRepository extends JpaRepository<Price, Long> {
+public interface PriceRepository extends JpaRepository<Price, PriceId> {
 	
-    /**
-     * Busca el precio para un producto y cadena en unas fechas determinada, 
-     * devolviendo el que tenga mayor prioridad en caso de haber más de uno.
-     *
-     * @param productId Identificador del producto.
-     * @param brandId Identificador de la cadena.
-     * @param startDate Fecha de inicio de la vigencia del precio.
-     * @param endDate Fecha de fin de la vigencia del precio.
-     * @return Optional con el precio encontrado.
-     */
-	Optional<Price> findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
-	            Integer productId, Integer brandId, LocalDateTime startDate, LocalDateTime endDate);
     /**
      * Busca el precio para un producto y cadena en una fecha determinada, 
      * devolviendo el que tenga mayor prioridad en caso de haber más de uno.
      * Este método utiliza la consulta definida en la interfaz como predeterminada.
      *
-     * @param productId Identificador del producto.
-     * @param brandId Identificador de la cadena.
-     * @param date Fecha para la que se quiere buscar el precio.
-     * @return Optional con el precio encontrado.
+     * @param productId Identificador del producto
+     * @param brandId Identificador de la cadena
+     * @param date Fecha para la que se quiere buscar el precio
+     * @return Optional con el precio encontrado
      */
-    default Optional<Price> findByProductIdAndBrandIdAndDate(Integer productId, Integer brandId, LocalDateTime date) {
-        return findFirstByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
-                productId, brandId, date, date);
-    }
+	  @Query("SELECT p FROM Price p WHERE p.id.productId = :productId AND p.id.brandId = :brandId AND p.id.startDate <= :date AND p.id.endDate >= :date ORDER BY p.id.priority DESC LIMIT 1")	
+     Optional<Price> findPrioritizedPrice(@Param("productId") Integer productId, @Param("brandId") Integer brandId, @Param("date") LocalDateTime date);
 
 }

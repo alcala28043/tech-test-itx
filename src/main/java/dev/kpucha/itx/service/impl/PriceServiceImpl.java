@@ -4,8 +4,12 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import dev.kpucha.itx.dto.PrioritizedPriceResponseDTO;
+import dev.kpucha.itx.mapper.PriceMapper;
 import dev.kpucha.itx.model.Price;
 import dev.kpucha.itx.repository.PriceRepository;
 import dev.kpucha.itx.service.PriceService;
@@ -17,8 +21,13 @@ public class PriceServiceImpl implements PriceService {
 	PriceRepository priceRepository;
 
 	@Override
-	public Optional<Price> findByProductIdAndBrandIdAndDate(Integer productId, Integer brandId, LocalDateTime date) {
-		Optional<Price> result = priceRepository.findByProductIdAndBrandIdAndDate(productId, brandId, date);
-		return result;
+	public PrioritizedPriceResponseDTO findPrioritizedPrice(Integer productId, Integer brandId, LocalDateTime date) {
+		Optional<Price> optPrice = priceRepository.findPrioritizedPrice(productId, brandId, date);
+		if(optPrice.isEmpty()) {
+			return null;
+		}		
+		Price price = optPrice.get();		
+		PrioritizedPriceResponseDTO response = PriceMapper.INSTANCE.priceToPrioritizedPriceResponseDTO(price);
+		return response;
 	}
 }
