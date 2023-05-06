@@ -1,7 +1,7 @@
 package dev.kpucha.itx.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -11,13 +11,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
 @Table(name = "PRICES")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Price {
+public class Price implements Serializable {
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5598896589378577473L;
+
 	@EmbeddedId
 	private PriceId id;
 
@@ -27,4 +33,6 @@ public class Price {
     private BigDecimal price;
     @Column(name = "CURR")
     private String currency;
+    
+    
 }

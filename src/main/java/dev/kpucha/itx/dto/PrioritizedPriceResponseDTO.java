@@ -13,9 +13,10 @@ import lombok.NoArgsConstructor;
 public class PrioritizedPriceResponseDTO {
 	private Integer productId;
 	private Integer brandId;
-	private Integer priceList;
 	private LocalDateTime startDate;
 	private LocalDateTime endDate;
+	private Integer priceList;
 	private BigDecimal price;
-	private String curr;
+	private String currency;
+	private Integer priority;
 }
