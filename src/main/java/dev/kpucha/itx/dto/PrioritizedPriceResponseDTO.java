@@ -18,5 +18,4 @@ public class PrioritizedPriceResponseDTO {
 	private Integer priceList;
 	private BigDecimal price;
 	private String currency;
-	private Integer priority;
 }

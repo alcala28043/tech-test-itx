@@ -16,6 +16,5 @@ public interface PriceMapper {
 	@Mapping(target="brandId", source="id.brandId")
 	@Mapping(target="startDate", source="id.startDate")
 	@Mapping(target="endDate", source="id.endDate") 
-	@Mapping(target="priority", source="id.priority") 
 	PrioritizedPriceResponseDTO priceToPrioritizedPriceResponseDTO(Price price);
 }
