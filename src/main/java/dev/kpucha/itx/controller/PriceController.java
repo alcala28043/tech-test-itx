@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 import org.springframework.web.server.ResponseStatusException;
 
 import dev.kpucha.itx.dto.PrioritizedPriceResponseDTO;
@@ -60,13 +61,14 @@ public class PriceController {
 	        @RequestParam @Parameter(description = "Brand ID", example = "1") Integer brandId,
 	        @RequestParam @Parameter(description = "Date with format yyyy-MM-dd HH:mm:ss", example = "2020-06-14 18:00:00") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime date
 	    ) {
+    	
     	try {
     		PrioritizedPriceResponseDTO price = priceService.findPrioritizedPrice(productId, brandId, date);
     		if (price == null) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prioritized price not found for the given parameters");
             }
             return ResponseEntity.ok(price);
-		} catch (Exception e) {
+		} catch (InternalServerError e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getLocalizedMessage());
 		}
 	}
