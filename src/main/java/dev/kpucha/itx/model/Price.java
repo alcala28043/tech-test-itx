@@ -3,6 +3,8 @@ package dev.kpucha.itx.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -30,6 +32,7 @@ public class Price implements Serializable {
     @Column(name = "PRICE_LIST")
     private Integer priceList;
     @Column(name = "PRICE")
+	@NumberFormat(pattern = "#0.00")
     private BigDecimal price;
     @Column(name = "CURR")
     private String currency;
