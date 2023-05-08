@@ -51,16 +51,16 @@ Desarrollar unos test al endpoint rest que  validen las siguientes peticiones al
 
 ## Aspectos a tener en cuenta
 
-- [ ] **SCM-GIT**
+- [x] **SCM-GIT**
 
 	- [x] Uso de github para presentar el código
-	- [ ] Usar numerosos commits para poder seguir la evolución del código, así como comentarios significativos en ellos
+	- [x] Usar numerosos commits para poder seguir la evolución del código, así como comentarios significativos en ellos
 
-- [ ] **Tooling**
+- [x] **Tooling**
 
 	- [x] Inclusión de Maven wrapper
 	- [x] Buena definición del POM
-	- [ ] Uso de Flyway para migraciones de bases de datos
+	- [x] Uso de Flyway para migraciones de bases de datos
 
 - [x] **Java**
 
@@ -69,20 +69,20 @@ Desarrollar unos test al endpoint rest que  validen las siguientes peticiones al
 
 - [x] **Spring**
 
-	- [ ] Usar correctamente los archivos de recursos (definición del datasource e inicialización de la base de datos)
-	- [ ] Uso de advice para manejo de excepciones
+	- [x] Usar correctamente los archivos de recursos (definición del datasource e inicialización de la base de datos)
+	- [x] Uso de advice para manejo de excepciones
 
-- [ ]  **CleanCode**
+- [x]  **CleanCode**
 
-	- [ ] Nombrado de métodos y variables de manera clara
-	- [ ] Inyección de dependencias por constructor
-	- [ ] Usar builders o constructores en lugar de setters (apreciable en RestExcepctionAdvice)
-	- [ ] Definir bien métodos y clases
-	- [ ] Que no haya acoplamiento en el diseño; no depender siempre de clases concretas y utilizar interfaces
-	- [ ] Buen diseño con bajo acoplamiento mediante el uso de interfaces y modelo diferente de base de datos y de API
+	- [x] Nombrado de métodos y variables de manera clara
+	- [x] Inyección de dependencias por constructor
+	- [x] Usar builders o constructores en lugar de setters (apreciable en RestExcepctionAdvice)
+	- [x] Definir bien métodos y clases
+	- [x] Que no haya acoplamiento en el diseño; no depender siempre de clases concretas y utilizar interfaces
+	- [x] Buen diseño con bajo acoplamiento mediante el uso de interfaces y modelo diferente de base de datos y de API
 
-- [ ] **Testing**
+- [x] **Testing**
 
-	- [ ] Tests de sistema con diferentes casuísticas y claros
-	- [ ] Aplicar testing unitarios
-	- [ ] Comprobar que pasen todos los tests
+	- [x] Tests de sistema con diferentes casuísticas y claros
+	- [x] Aplicar testing unitarios
+	- [x] Comprobar que pasen todos los tests
