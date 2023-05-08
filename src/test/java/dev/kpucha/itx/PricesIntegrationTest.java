@@ -18,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @SpringJUnitConfig
 @SpringBootTest
-public class PricesIntegrationTest {
+class PricesIntegrationTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -26,7 +26,7 @@ public class PricesIntegrationTest {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Test
-    public void testPricesTableIsPopulated() {
+    void testPricesTableIsPopulated() {
         List<Map<String, Object>> prices = jdbcTemplate.queryForList("SELECT * FROM PRICES");
 
         // Verificar que la tabla tiene al menos un registro

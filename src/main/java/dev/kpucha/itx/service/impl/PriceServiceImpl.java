@@ -25,7 +25,6 @@ public class PriceServiceImpl implements PriceService {
 			return null;
 		}		
 		Price price = optPrice.get();		
-		PrioritizedPriceResponseDTO response = PriceMapper.INSTANCE.priceToPrioritizedPriceResponseDTO(price);
-		return response;
+		return PriceMapper.INSTANCE.priceToPrioritizedPriceResponseDTO(price);
 	}
 }

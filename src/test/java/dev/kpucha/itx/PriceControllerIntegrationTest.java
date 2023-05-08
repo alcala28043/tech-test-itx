@@ -28,7 +28,7 @@ import dev.kpucha.itx.dto.PrioritizedPriceResponseDTO;
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @DisplayName("Tests de peticiones al endpoint REST")
-public class PriceControllerIntegrationTest {
+class PriceControllerIntegrationTest {
 	
 	private static final DateTimeFormatter DATE_TIME_FORMATTER = 
 			DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -86,54 +86,54 @@ public class PriceControllerIntegrationTest {
  
     @Test
     @DisplayName("Test 1: petición a las 10:00 del día 14 del producto 35455   para la brand 1 (ZARA)")
-    public void test1Product355455brand1day14hour10() {    	
+    void test1Product355455brand1day14hour10() {    	
     	LocalDateTime date = LocalDateTime.parse("2020-06-14 10:00:00", DATE_TIME_FORMATTER);
     	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date);
-    	assertEquals(price.getStatusCode(), HttpStatus.OK);
-    	assertEquals(price.getBody(), TEST1_EXPECTED_PRICE);
+    	assertEquals(HttpStatus.OK, price.getStatusCode());
+    	assertEquals(TEST1_EXPECTED_PRICE, price.getBody());
     }
     @Test
     @DisplayName("Test 2: petición a las 16:00 del día 14 del producto 35455   para la brand 1 (ZARA)")
-    public void test2Product355455brand1day14hour16() {    	
+    void test2Product355455brand1day14hour16() {    	
     	LocalDateTime date = LocalDateTime.parse("2020-06-14 16:00:00", DATE_TIME_FORMATTER);
     	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date);
-    	assertEquals(price.getStatusCode(), HttpStatus.OK);
-    	assertEquals(price.getBody(), TEST2_EXPECTED_PRICE);
+    	assertEquals(HttpStatus.OK, price.getStatusCode());
+    	assertEquals(TEST2_EXPECTED_PRICE, price.getBody());
     }
     @Test
     @DisplayName("Test 3: petición a las 21:00 del día 14 del producto 35455   para la brand 1 (ZARA)")
-    public void test3Product355455brand1day14hour21() {   
+    void test3Product355455brand1day14hour21() {   
     	LocalDateTime date = LocalDateTime.parse("2020-06-14 21:00:00", DATE_TIME_FORMATTER);
-    	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date); 	
-    	assertEquals(price.getStatusCode(), HttpStatus.OK);
-    	assertEquals(price.getBody(), TEST3_EXPECTED_PRICE);
+    	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date);
+    	assertEquals(HttpStatus.OK, price.getStatusCode());
+    	assertEquals(TEST3_EXPECTED_PRICE, price.getBody());
     }
     @Test
     @DisplayName("Test 4: petición a las 10:00 del día 15 del producto 35455   para la brand 1 (ZARA)")
-    public void test4Product355455brand1day15hour10() {  
+    void test4Product355455brand1day15hour10() {  
     	LocalDateTime date = LocalDateTime.parse("2020-06-15 10:00:00", DATE_TIME_FORMATTER);
-    	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date);  
-    	assertEquals(price.getStatusCode(), HttpStatus.OK);
-    	assertEquals(price.getBody(), TEST4_EXPECTED_PRICE);
+    	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date);
+    	assertEquals(HttpStatus.OK, price.getStatusCode());
+    	assertEquals(TEST4_EXPECTED_PRICE, price.getBody());
     }
     @Test
     @DisplayName("Test 5: petición a las 21:00 del día 16 del producto 35455   para la brand 1 (ZARA)")
-    public void test5Product355455brand1day16hour21() {  
+    void test5Product355455brand1day16hour21() {  
     	LocalDateTime date = LocalDateTime.parse("2020-06-16 21:00:00", DATE_TIME_FORMATTER);
-    	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date); 
-    	assertEquals(price.getStatusCode(), HttpStatus.OK);
-    	assertEquals(price.getBody(), TEST5_EXPECTED_PRICE);
+    	ResponseEntity<PrioritizedPriceResponseDTO> price = princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date);
+    	assertEquals(HttpStatus.OK, price.getStatusCode());
+    	assertEquals(TEST5_EXPECTED_PRICE, price.getBody());
     }
     @Test
     @DisplayName("Test 6: petición NOT FOUND")
-    public void test6NotFound() {  
+    void test6NotFound() {  
     	LocalDateTime date = LocalDateTime.parse("1970-01-01 00:00:00", DATE_TIME_FORMATTER); 
     	assertThrows(ResponseStatusException.class, 
     			()-> princeController.getPrioritizedPrice(PRODUCT_ID, BRAND_ID, date));
     }
     @Test
     @DisplayName("Test 7: petición BAD REQUEST")
-    public void test7BadRequest() {  
+    void test7BadRequest() {  
     	TestRestTemplate testRestTemplate = new TestRestTemplate();
     	assertThrows(ResourceAccessException.class,
     			() -> testRestTemplate.getForEntity(
